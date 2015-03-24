@@ -8,15 +8,29 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
 
-@end
 
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
+    // Creamos una vista de tipo UIWindow
+    [self setWindow:[[UIWindow alloc]
+                     initWithFrame:[[UIScreen mainScreen] bounds]]];
+    
+    [[self window] setBackgroundColor:[UIColor orangeColor]];
+    self.window.backgroundColor = [UIColor orangeColor];
+    
+    // La mostramos
+    [[self window] makeKeyAndVisible];
+    
+    
+    
+    
     return YES;
 }
 
