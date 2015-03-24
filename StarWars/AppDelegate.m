@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 
-
+#import "AGTStarWarsCharacter.h"
+#import "AGTCharacterViewController.h"
 
 @implementation AppDelegate
 
@@ -24,6 +25,31 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [[self window] setBackgroundColor:[UIColor orangeColor]];
     self.window.backgroundColor = [UIColor orangeColor];
+    
+    
+    // Crear un modelo
+    NSURL *vaderURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Darth_Vader"];
+    
+    NSBundle *b = [NSBundle mainBundle];
+    NSData *vaderSound = [NSData dataWithContentsOfURL:[b URLForResource:@"vader" withExtension:@"caf"]];
+    UIImage *vaderImage = [UIImage imageNamed:@"darthVader.jpg"];
+    
+    AGTStarWarsCharacter *model = [[AGTStarWarsCharacter alloc]
+                                   initWithName:@"Anakin Skywalker"
+                                   alias:@"Darth Vader"
+                                   url:vaderURL
+                                   soundData:vaderSound
+                                   photo:vaderImage];
+    
+    
+    
+    // Creamos un controlador que lo muestre
+    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc]
+                                          initWithModel:model];
+    
+    
+    self.window.rootViewController = charVC;
+    
     
     // La mostramos
     [[self window] makeKeyAndVisible];
