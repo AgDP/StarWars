@@ -31,6 +31,7 @@
 		ED13EDA91AC2281300A92CCF /* vader.caf in Resources */ = {isa = PBXBuildFile; fileRef = ED13ED991AC2281300A92CCF /* vader.caf */; };
 		ED13EDAA1AC2281300A92CCF /* yoda.caf in Resources */ = {isa = PBXBuildFile; fileRef = ED13ED9A1AC2281300A92CCF /* yoda.caf */; };
 		ED13EDAB1AC2281300A92CCF /* yoda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED13ED9B1AC2281300A92CCF /* yoda.jpg */; };
+		ED13EDAF1AC346F900A92CCF /* CafPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED13EDAE1AC346F900A92CCF /* CafPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		ED13ED991AC2281300A92CCF /* vader.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = vader.caf; sourceTree = "<group>"; };
 		ED13ED9A1AC2281300A92CCF /* yoda.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = yoda.caf; sourceTree = "<group>"; };
 		ED13ED9B1AC2281300A92CCF /* yoda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yoda.jpg; sourceTree = "<group>"; };
+		ED13EDAD1AC346F900A92CCF /* CafPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CafPlayer.h; sourceTree = "<group>"; };
+		ED13EDAE1AC346F900A92CCF /* CafPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 		ED13ED5B1AC203FC00A92CCF /* StarWars */ = {
 			isa = PBXGroup;
 			children = (
+				ED13EDB01AC3470100A92CCF /* Sound */,
 				ED13EDAC1AC2281E00A92CCF /* Resources */,
 				ED13ED851AC215CF00A92CCF /* Models */,
 				ED13ED8B1AC21A5400A92CCF /* Controllers */,
@@ -195,6 +199,15 @@
 				ED13ED9B1AC2281300A92CCF /* yoda.jpg */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		ED13EDB01AC3470100A92CCF /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				ED13EDAD1AC346F900A92CCF /* CafPlayer.h */,
+				ED13EDAE1AC346F900A92CCF /* CafPlayer.m */,
+			);
+			name = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +328,7 @@
 			files = (
 				ED13ED621AC203FC00A92CCF /* AppDelegate.m in Sources */,
 				ED13ED841AC215C300A92CCF /* AGTStarWarsCharacter.m in Sources */,
+				ED13EDAF1AC346F900A92CCF /* CafPlayer.m in Sources */,
 				ED13ED5F1AC203FC00A92CCF /* main.m in Sources */,
 				ED13ED891AC21A4F00A92CCF /* AGTCharacterViewController.m in Sources */,
 			);

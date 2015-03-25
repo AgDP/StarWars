@@ -19,7 +19,11 @@
                     <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem systemItem="play" id="KtT-dy-Bcn"/>
+                        <barButtonItem systemItem="play" id="KtT-dy-Bcn">
+                            <connections>
+                                <action selector="playSound:" destination="-1" id="HIE-O8-V9n"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="olC-c6-1pA">

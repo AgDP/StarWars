@@ -11,6 +11,7 @@
 
 @implementation AGTCharacterViewController
 
+#pragma mark - Init
 -(id) initWithModel:(AGTStarWarsCharacter *) model{
     
     if (self = [super initWithNibName:nil
@@ -21,6 +22,7 @@
     return self;
 }
 
+#pragma mark - View Lifecycle
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -30,10 +32,28 @@
     
     
 }
+
+#pragma mark - Memory
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Actions
+-(IBAction)playSound:(id)sender{
+    
+    // Sacamos el sonido del modelo
+    // Lo reproducimos
+    self.player = [CafPlayer cafPlayer];
+    [self.player playSoundData:self.model.soundData];
+    
+    
+}
+
+
+
+
+
 
 
 @end
