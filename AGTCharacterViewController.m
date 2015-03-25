@@ -17,6 +17,7 @@
     if (self = [super initWithNibName:nil
                                bundle:nil]) {
         _model = model;
+        self.title = [model alias];
     }
     
     return self;
@@ -26,6 +27,11 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    // Asegurarse de que no se ocupa toda la pantalla
+    // cuando estás en un combinador
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     
     // Sincronizar modelo -> vista
     self.photoView.image = self.model.photo;

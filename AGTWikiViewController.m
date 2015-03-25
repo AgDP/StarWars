@@ -17,6 +17,7 @@
     if (self = [super initWithNibName:nil
                                bundle:nil]) {
         _model = model;
+        self.title = @"Wikipedia";
     }
     
     return self;
@@ -26,6 +27,9 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    // Asegurarse de que no se ocupa toda la pantalla
+    // cuando estás en un combinador
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     // Asignar delegados
     self.browser.delegate = self;
@@ -61,6 +65,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
+-(void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    
+    // ocultar activityView
+    // hacer un NSLog
+    
+}
 
 
 

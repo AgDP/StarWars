@@ -44,12 +44,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
     
-    // Creamos un controlador que lo muestre
+    // Creamos los controladores
     AGTWikiViewController *wVC = [[AGTWikiViewController alloc]
                                   initWithModel:model];
     
+    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc]
+                                          initWithModel:model];
     
-    self.window.rootViewController = wVC;
+    // Creo el combinador
+    UITabBarController *tabVC = [[UITabBarController alloc] init];
+    tabVC.viewControllers = @[charVC, wVC];
+    
+    self.window.rootViewController = tabVC;
     
     
     // La mostramos
