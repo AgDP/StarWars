@@ -49,6 +49,17 @@
 
 }
 
+-(BOOL) webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType{
+    
+    if ((navigationType == UIWebViewNavigationTypeLinkClicked) ||
+        (navigationType == UIWebViewNavigationTypeFormSubmitted)){
+        return  NO;
+    }else{
+        return YES;
+    }
+}
 
 
 
