@@ -10,6 +10,7 @@
 
 #import "AGTStarWarsCharacter.h"
 #import "AGTCharacterViewController.h"
+#import "AGTWikiViewController.h"
 
 @implementation AppDelegate
 
@@ -44,11 +45,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
     // Creamos un controlador que lo muestre
-    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc]
-                                          initWithModel:model];
+    AGTWikiViewController *wVC = [[AGTWikiViewController alloc]
+                                  initWithModel:model];
     
     
-    self.window.rootViewController = charVC;
+    self.window.rootViewController = wVC;
     
     
     // La mostramos
