@@ -7,7 +7,7 @@
 //
 
 #import "AGTCharacterViewController.h"
-
+#import "AGTWikiViewController.h"
 
 @implementation AGTCharacterViewController
 
@@ -56,6 +56,17 @@
     
 }
 
+
+-(IBAction)displayWiki:(id)sender{
+    
+    // Crear un WikiVC
+    AGTWikiViewController *wVC = [[AGTWikiViewController alloc]
+                                  initWithModel:self.model];
+    // Hacer un push
+    [self.navigationController pushViewController:wVC
+                                         animated:YES];
+    
+}
 
 
 

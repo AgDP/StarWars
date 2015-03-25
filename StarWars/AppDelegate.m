@@ -45,17 +45,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
     // Creamos los controladores
-    AGTWikiViewController *wVC = [[AGTWikiViewController alloc]
-                                  initWithModel:model];
-    
     AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc]
                                           initWithModel:model];
     
     // Creo el combinador
-    UITabBarController *tabVC = [[UITabBarController alloc] init];
-    tabVC.viewControllers = @[charVC, wVC];
+    UINavigationController *navVC = [[UINavigationController alloc] init];
+    [navVC pushViewController:charVC
+                     animated:NO];
     
-    self.window.rootViewController = tabVC;
+    self.window.rootViewController = navVC;
     
     
     // La mostramos
