@@ -9,7 +9,7 @@
 #import "AGTCharacterViewController.h"
 #import "AGTWikiViewController.h"
 
-@implementation AGTCharacterViewController
+@implementation AGTCharacterViewController : UIViewController
 
 #pragma mark - Init
 -(id) initWithModel:(AGTStarWarsCharacter *) model{
@@ -72,7 +72,25 @@
 
 
 
+#pragma mark - UISplitViewControllerDelegate
 
+-(void) splitViewController:(UISplitViewController *) svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
+
+
+    //Averiguar si la tabla se ve o no
+    if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
+        
+        //La tabla  está oculta y cuelga del botón
+        //Ponemos ese boton en mi barra de navegación
+        
+        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+    }else{
+        //Se muestra la tabla: oculto el botón de la barra de navegación
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+        
+    
+}
 
 
 @end
