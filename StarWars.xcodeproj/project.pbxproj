@@ -531,6 +531,7 @@
 				ED13ED7E1AC203FC00A92CCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED13ED7F1AC203FC00A92CCF /* Build configuration list for PBXNativeTarget "StarWarsTests" */ = {
 			isa = XCConfigurationList;
@@ -539,6 +540,7 @@
 				ED13ED811AC203FC00A92CCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

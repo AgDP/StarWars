@@ -18,17 +18,21 @@
 @property (strong, nonatomic) NSData *soundData;
 @property (strong, nonatomic) UIImage *photo;
 
+@property (strong, nonatomic) UIImage *icon;
+
 // designated
 -(id) initWithName:(NSString *) name
              alias:(NSString *) alias
                url:(NSURL *) wikiURL
          soundData:(NSData*) soundData
-             photo:(UIImage *) photo;
+             photo:(UIImage *) photo
+              icon:(UIImage *) icon;
 
 -(id) initWithAlias:(NSString *) alias
                 url:(NSURL *) wikiURL
           soundData:(NSData*) soundData
-              photo:(UIImage *) photo;
+              photo:(UIImage *) photo
+               icon:(UIImage *) icon;
 
 
 @end

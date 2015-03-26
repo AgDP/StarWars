@@ -18,6 +18,8 @@
                                bundle:nil]) {
         _model = model;
         self.title = [model alias];
+        self.tabBarItem.image = [self.model icon];
+        
     }
     
     return self;
