@@ -11,6 +11,8 @@
 #import "AGTStarWarsCharacter.h"
 #import "AGTCharacterViewController.h"
 #import "AGTWikiViewController.h"
+#import "AGTStarWarsUniverse.h"
+#import "AGTUniverseTableViewController.h"
 
 @implementation AppDelegate
 
@@ -29,15 +31,20 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
     
+    // Creamos un modelo
+    AGTStarWarsUniverse *universe = [AGTStarWarsUniverse new];
+    
+    // Creamos un controlador
+    AGTUniverseTableViewController *unVC = [[AGTUniverseTableViewController alloc] initWithModel:universe style:UITableViewStylePlain];
     
     
     
     
     // Creo el combinador
-    UITabBarController *tabVC = [[UITabBarController alloc] init];
-    tabVC.viewControllers = [self arrayOfControllers];
+    UINavigationController *nav = [UINavigationController new];
+    [nav pushViewController:unVC animated:NO];
     
-    self.window.rootViewController = tabVC;
+    self.window.rootViewController = nav;
     
     
     // La mostramos
@@ -70,151 +77,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-
-#pragma mark - Utils
--(NSArray *) arrayOfModels{
-    
-    // Vader
-    NSURL *vaderURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Darth_Vader"];
-    
-    NSBundle *b = [NSBundle mainBundle];
-    NSData *vaderSound = [NSData dataWithContentsOfURL:[b URLForResource:@"vader" withExtension:@"caf"]];
-    UIImage *vaderImage = [UIImage imageNamed:@"darthVader.jpg"];
-    UIImage *vaderIcon = [[UIImage imageNamed:@"vader-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *vader = [[AGTStarWarsCharacter alloc]
-                                   initWithName:@"Anakin Skywalker"
-                                   alias:@"Darth Vader"
-                                   url:vaderURL
-                                   soundData:vaderSound
-                                   photo:vaderImage
-                                   icon:vaderIcon];
-    // Tarkin
-    NSURL *tarkinURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Grand_Moff_Tarkin"];
-    
-    NSData *tarkinSound = [NSData dataWithContentsOfURL:[b URLForResource:@"tarkin" withExtension:@"caf"]];
-    UIImage *tarkinImage = [UIImage imageNamed:@"tarkin.jpg"];
-    UIImage *tarkinIcon = [[UIImage imageNamed:@"tarkin-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *tarkin = [[AGTStarWarsCharacter alloc]
-                                    initWithName:@"Wilhuf Tarkin"
-                                    alias:@"Grand Moff Tarkin"
-                                    url:tarkinURL
-                                    soundData:tarkinSound
-                                    photo:tarkinImage
-                                    icon:tarkinIcon];
-    
-    // Palpatine
-    NSURL *palpatineURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Palpatine"];
-    
-    NSData *palpatineSound = [NSData dataWithContentsOfURL:[b URLForResource:@"palpatine" withExtension:@"caf"]];
-    UIImage *palpatineImage = [UIImage imageNamed:@"palpatine.jpg"];
-    UIImage *palpatineIcon = [[UIImage imageNamed:@"darth-sidious-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *palpatine = [[AGTStarWarsCharacter alloc]
-                                       initWithName: @"Palpatine"
-                                       alias:@"Darth Sidious"
-                                       url:palpatineURL
-                                       soundData:palpatineSound
-                                       photo:palpatineImage
-                                       icon:palpatineIcon];
-    
-    
-    // Chewbacca
-    NSURL *chewieURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Chewbacca"];
-    
-    NSData *chewieSound = [NSData dataWithContentsOfURL:[b URLForResource:@"chewbacca" withExtension:@"caf"]];
-    UIImage *chewieImage = [UIImage imageNamed:@"chewbacca.jpg"];
-    UIImage *chewieIcon = [[UIImage imageNamed:@"chewbacca-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *chewie = [[AGTStarWarsCharacter alloc]
-                                    initWithAlias:@"Chewbacca"
-                                    url:chewieURL
-                                    soundData:chewieSound
-                                    photo:chewieImage
-                                    icon:chewieIcon];
-    
-    // C-3PO
-    NSURL *c3poURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/C-3PO"];
-    
-    NSData *c3poSound = [NSData dataWithContentsOfURL:[b URLForResource:@"c3po" withExtension:@"caf"]];
-    UIImage *c3poImage = [UIImage imageNamed:@"c3po.jpg"];
-    UIImage *c3poIcon = [[UIImage imageNamed:@"C3PO-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *c3po = [[AGTStarWarsCharacter alloc]
-                                  initWithAlias:@"C-3PO"
-                                  url:c3poURL
-                                  soundData:c3poSound
-                                  photo:c3poImage
-                                  icon:c3poIcon];
-    
-    // Yoda
-    NSURL *yodaURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Yoda"];
-    
-    
-    NSData *yodaSound = [NSData dataWithContentsOfURL:[b URLForResource:@"yoda" withExtension:@"caf"]];
-    UIImage *yodaImage = [UIImage imageNamed:@"yoda.jpg"];
-    UIImage *yodaIcon = [[UIImage imageNamed:@"yoda-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *yoda = [[AGTStarWarsCharacter alloc]
-                                  initWithName:@"Minch Yoda"
-                                  alias:@"Master Yoda"
-                                  url:yodaURL
-                                  soundData:yodaSound
-                                  photo:yodaImage
-                                  icon:yodaIcon];
-    
-    // R2-D2
-    NSURL *r2d2URL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/R2-D2"];
-    
-    NSData *r2d2Sound = [NSData dataWithContentsOfURL:[b URLForResource:@"r2-d2" withExtension:@"caf"]];
-    UIImage *r2d2Image = [UIImage imageNamed:@"R2-D2.jpg"];
-    UIImage *r2d2Icon = [[UIImage imageNamed:@"R2D2-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    AGTStarWarsCharacter *r2d2 = [[AGTStarWarsCharacter alloc]
-                                  initWithAlias:@"R2-D2"
-                                  url:r2d2URL
-                                  soundData:r2d2Sound
-                                  photo:r2d2Image
-                                  icon:r2d2Icon];
-    
-    return @[vader, chewie, c3po, r2d2, yoda, palpatine, tarkin];
-    
-}
-
--(NSArray *) arrayOfControllers{
-    
-    NSArray *models = [self arrayOfModels];
-    NSMutableArray *controllers = [NSMutableArray
-                                   arrayWithCapacity:models.count];
-    
-    // recorremos los modelos
-    for (AGTStarWarsCharacter *each in models) {
-        
-        // Creo un controlador
-        AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc]
-                                              initWithModel:each];
-        // Lo meto en un navigation
-        UINavigationController *nav = [[UINavigationController alloc]
-                                       initWithRootViewController:charVC];
-        
-        // lo añado al array de controladores
-        [controllers addObject:nav];
-    }
-    
-    return controllers;
-}
-
-
-
-
-
-
-
-
-
-
 
 
 
