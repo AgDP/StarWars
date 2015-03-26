@@ -44,6 +44,31 @@
                                        url:vaderURL
                                        soundData:vaderSound
                                        photo:vaderImage];
+        // Tarkin
+        NSURL *tarkinURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Grand_Moff_Tarkin"];
+        
+        NSData *tarkinSound = [NSData dataWithContentsOfURL:[b URLForResource:@"tarkin" withExtension:@"caf"]];
+        UIImage *tarkinImage = [UIImage imageNamed:@"darthVader.jpg"];
+        
+        AGTStarWarsCharacter *tarkin = [[AGTStarWarsCharacter alloc]
+                                       initWithName:@"Wilhuf Tarkin"
+                                       alias:@"Grand Moff Tarkin"
+                                       url:tarkinURL
+                                       soundData:tarkinSound
+                                       photo:tarkinImage];
+        
+        // Palpatine
+        NSURL *palpatineURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Palpatine"];
+
+        NSData *palpatineSound = [NSData dataWithContentsOfURL:[b URLForResource:@"palpatine" withExtension:@"caf"]];
+        UIImage *palpatineImage = [UIImage imageNamed:@"palpatine.jpg"];
+        
+        AGTStarWarsCharacter *palpatine = [[AGTStarWarsCharacter alloc]
+                                       initWithAlias:@"Palpatine"
+                                       url:palpatineURL
+                                       soundData:palpatineSound
+                                       photo:palpatineImage];
+
         
         // Chewbacca
         NSURL *chewieURL = [NSURL URLWithString:@"http://en.wikipedia.org/wiki/Chewbacca"];
@@ -96,7 +121,7 @@
                                       photo:r2d2Image];
         
 
-        self.imperials = @[vader];
+        self.imperials = @[vader, palpatine, tarkin];
         self.rebels = @[chewie, c3po, r2d2, yoda];
     }
     
