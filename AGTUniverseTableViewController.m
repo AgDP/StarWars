@@ -116,13 +116,18 @@
     }
     
     
-    //Crear el controlador de Character
-    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc] initWithModel:character];
+    //Avisar al delegado siempre y cuando entienda el mensaje
+    if ([self.delegate respondsToSelector:@selector(universeTableViewController:didSelectCharacter:)])  {
+        
+        //te lo mando
+        [self.delegate universeTableViewController:self didSelectCharacter:character];
+    }
     
-    //Push
-    [self.navigationController pushViewController:charVC animated:YES];
+    
     
 }
+
+
 
 
 @end

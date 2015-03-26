@@ -36,7 +36,7 @@
     
     
     // Sincronizar modelo -> vista
-    self.photoView.image = self.model.photo;
+    [self syncViewWithModel];
     
     
 }
@@ -89,6 +89,25 @@
         self.navigationItem.leftBarButtonItem = nil;
     }
         
+    
+}
+
+#pragma mark - AGTUniverseTableViewControllerDelegate
+
+-(void) universeTableViewController:(AGTUniverseTableViewController *)uVC didSelectCharacter:(AGTStarWarsCharacter *)character{
+    
+    //Actualizo el modelo
+    self.model = character;
+    
+    //Sincronizo modelo -> vista(s)
+    [self syncViewWithModel];
+    
+}
+
+-(void) syncViewWithModel{
+    
+    self.title = self.model.alias;
+    self.photoView.image = self.model.photo;
     
 }
 

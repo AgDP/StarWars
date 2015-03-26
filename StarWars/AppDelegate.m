@@ -53,6 +53,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //Asignamos delegados
     splitVC.delegate = charVC;
+    unVC.delegate = charVC; 
     
     //Lo hago root
     self.window.rootViewController = splitVC;
