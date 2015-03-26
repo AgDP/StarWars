@@ -8,7 +8,11 @@
 
 #import "AGTWikiViewController.h"
 
+@interface AGTWikiViewController ()
 
+@property (nonatomic) BOOL canLoad;
+
+@end
 
 @implementation AGTWikiViewController
 
@@ -18,6 +22,7 @@
                                bundle:nil]) {
         _model = model;
         self.title = @"Wikipedia";
+        _canLoad = YES;
     }
     
     return self;
@@ -31,8 +36,7 @@
     // cuando estás en un combinador
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    // Asignar delegados
-    self.browser.delegate = self;
+    
     
     // sincronizar modelo -> vista
     [self.activityView setHidden:NO];
@@ -44,12 +48,22 @@
     
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    // Asignar delegados
+    self.browser.delegate = self;
+    
+}
+
 #pragma mark - UIWebViewDelegate
 -(void) webViewDidFinishLoad:(UIWebView *)webView{
     
     // Para y oculto el activity
     [self.activityView stopAnimating];
     [self.activityView setHidden:YES];
+    
+    self.canLoad = NO;
 
 }
 
@@ -57,12 +71,8 @@
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType{
     
-    if ((navigationType == UIWebViewNavigationTypeLinkClicked) ||
-        (navigationType == UIWebViewNavigationTypeFormSubmitted)){
-        return  NO;
-    }else{
-        return YES;
-    }
+    return self.canLoad;
+
 }
 
 -(void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
