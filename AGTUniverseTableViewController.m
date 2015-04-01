@@ -8,6 +8,7 @@
 
 #import "AGTUniverseTableViewController.h"
 #import "AGTCharacterViewController.h"
+#import "AGTStarWarsUniverse.h"
 
 @interface AGTUniverseTableViewController ()
 
@@ -124,6 +125,14 @@
     }
     
     
+    // mandamos una notificacion
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    NSDictionary *dict = @{CHARACTER_KEY : character};
+        
+    NSNotification *n = [NSNotification notificationWithName:CHARACTER_DID_CHANGE_NOTIFICATION_NAME object:self userInfo:dict];
+    
+    [nc postNotification:n];
     
 }
 

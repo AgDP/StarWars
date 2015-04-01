@@ -7,6 +7,7 @@
 //
 
 #import "AGTWikiViewController.h"
+#import "AGTUniverseTableViewController.h"
 
 @interface AGTWikiViewController ()
 
@@ -32,6 +33,16 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    //Alta en notificación
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self
+           selector:@selector(notifyThatCharacterDidChange:)
+               name:CHARACTER_DID_CHANGE_NOTIFICATION_NAME
+             object:nil];
+    
+    
+    
     // Asegurarse de que no se ocupa toda la pantalla
     // cuando estás en un combinador
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -39,11 +50,7 @@
     
     
     // sincronizar modelo -> vista
-    [self.activityView setHidden:NO];
-    [self.activityView startAnimating];
-    
-    [self.browser loadRequest:
-     [NSURLRequest requestWithURL:self.model.wikiURL]];
+    [self syncWithModel];
     
     
 }
@@ -54,6 +61,14 @@
     // Asignar delegados
     self.browser.delegate = self;
     
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    
+    //Me doy de baja de las notificaciones
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -71,7 +86,8 @@
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType{
     
-    return self.canLoad;
+    //return self.canLoad;
+    return YES;
 
 }
 
@@ -87,6 +103,35 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Notification
+
+// CHARACTER_DID_CHANGE_NOTIFICATION_NAME
+-(void) notifyThatCharacterDidChange:(NSNotification *) notification{
+    
+    
+    //Sacamos el personaje
+    AGTStarWarsCharacter *character = [notification.userInfo objectForKey:CHARACTER_KEY];
+    
+    //Actualizamos el modelo
+    self.model = character;
+    
+    //Sincronizamos modelo -> vista
+    [self syncWithModel];
+    
+}
+
+#pragma mark - Utils
+-(void) syncWithModel{
+    
+    self.canLoad = YES;
+    
+    [self.activityView setHidden:NO];
+    [self.activityView startAnimating];
+    
+    [self.browser loadRequest:
+     [NSURLRequest requestWithURL:self.model.wikiURL]];
 }
 
 

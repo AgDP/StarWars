@@ -6,13 +6,17 @@
 //  Copyright (c) 2015 Agbo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "AGTStarWarsUniverse.h"
+@import UIKit;
+@class AGTStarWarsUniverse;
+
 
 #define IMPERIAL_SECTION 0
 #define REBEL_SECTION 1
+#define CHARACTER_DID_CHANGE_NOTIFICATION_NAME @"characterDidChangeNotification"
+#define CHARACTER_KEY @"characterKey"
 
 @class AGTUniverseTableViewController;
+@class AGTStarWarsCharacter;
 
 @protocol AGTUniverseTableViewControllerDelegate <NSObject>
 
