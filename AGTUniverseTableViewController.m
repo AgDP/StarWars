@@ -137,6 +137,16 @@
 }
 
 
+#pragma mark - AGTUniverseTableViewControllerDelegate
+
+-(void) universeTableViewController:(AGTUniverseTableViewController *)uVC didSelectCharacter:(AGTStarWarsCharacter *)character{
+    
+    //Creamos un characterVC
+    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc] initWithModel:character];
+    
+    //Hago un push
+    [self.navigationController pushViewController:charVC animated:YES];
+}
 
 
 @end

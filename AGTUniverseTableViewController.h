@@ -25,7 +25,7 @@
 
 @end
 
-@interface AGTUniverseTableViewController : UITableViewController
+@interface AGTUniverseTableViewController : UITableViewController<AGTUniverseTableViewControllerDelegate>
 
 @property (strong, nonatomic) AGTStarWarsUniverse *model;
 @property (weak, nonatomic) id<AGTUniverseTableViewControllerDelegate> delegate;

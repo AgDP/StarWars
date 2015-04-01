@@ -26,37 +26,29 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setWindow:[[UIWindow alloc]
                      initWithFrame:[[UIScreen mainScreen] bounds]]];
     
-    [[self window] setBackgroundColor:[UIColor orangeColor]];
-    self.window.backgroundColor = [UIColor orangeColor];
+    //[[self window] setBackgroundColor:[UIColor orangeColor]];
+    //self.window.backgroundColor = [UIColor orangeColor];
     
     
     
     // Creamos un modelo
     AGTStarWarsUniverse *universe = [AGTStarWarsUniverse new];
     
-    // Creamos los controladores
-    AGTUniverseTableViewController *unVC = [[AGTUniverseTableViewController alloc] initWithModel:universe style:UITableViewStylePlain];
     
-    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc] initWithModel:[universe imperialAtIndex:0]];
+    //Detectamos el tipo de pantalla
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        
+        //Tipo tableta
+        [self configureForPadWithModel: universe];
+    }else{
+        
+        //Tipo teléfono
+        [self configureForPhoneWithModel:universe];
+    }
     
-    //Creamos los navigationControllers
-    UINavigationController *uNav = [UINavigationController new];
-    [uNav pushViewController:unVC animated:NO];
-    
-    UINavigationController *cNav = [UINavigationController new];
-    [cNav pushViewController:charVC animated:NO];
     
     
-    // Creo el combinador
-    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
-    splitVC.viewControllers = @[uNav, cNav];
     
-    //Asignamos delegados
-    splitVC.delegate = charVC;
-    unVC.delegate = charVC; 
-    
-    //Lo hago root
-    self.window.rootViewController = splitVC;
     
     
     // La mostramos
@@ -91,6 +83,51 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 
+-(void) configureForPadWithModel: (AGTStarWarsUniverse *) universe{
+    
+    // Creamos los controladores
+    AGTUniverseTableViewController *unVC = [[AGTUniverseTableViewController alloc] initWithModel:universe style:UITableViewStylePlain];
+    
+    AGTCharacterViewController *charVC = [[AGTCharacterViewController alloc] initWithModel:[universe imperialAtIndex:0]];
+    
+    //Creamos los navigationControllers
+    UINavigationController *uNav = [UINavigationController new];
+    [uNav pushViewController:unVC animated:NO];
+    
+    UINavigationController *cNav = [UINavigationController new];
+    [cNav pushViewController:charVC animated:NO];
+    
+    
+    // Creo el combinador
+    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    splitVC.viewControllers = @[uNav, cNav];
+    
+    //Asignamos delegados
+    splitVC.delegate = charVC;
+    unVC.delegate = charVC;
+    
+    //Lo hago root
+    self.window.rootViewController = splitVC;
+    
+}
+
+-(void) configureForPhoneWithModel: (AGTStarWarsUniverse *) universe{
+    
+    
+    //Creamos el controlador
+    AGTUniverseTableViewController *uVC = [[AGTUniverseTableViewController alloc] initWithModel:universe style:UITableViewStylePlain];
+    
+    //Creamos el combinador
+    UINavigationController *navVC = [UINavigationController new];
+    
+    [navVC pushViewController:uVC animated:NO];
+    
+    //Asignamos delegados
+    uVC.delegate = uVC;
+    
+    //Lo hago root
+    self.window.rootViewController = navVC;
+}
 
 
 
